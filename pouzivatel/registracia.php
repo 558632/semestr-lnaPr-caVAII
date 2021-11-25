@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <?php
     require "DBulozisko.php";
-    $ul=new DBulozisko();
+    if(isset($_POST['Odoslat1'])==true||isset($_POST['Odoslat2'])==true||isset($_POST['Odoslat3'])==true){
+        $ul=new DBulozisko();
+    }
 ?>
 <html lang="en">
 <head>
@@ -13,20 +15,22 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="client-side-form-check.js"></script>
+    <link rel="stylesheet" type="text/css" href="client-side-form-check.css">
 </head>
 <body>
 <div class="container">
     <div class="sticky-top">
         <div class="row" style="padding: 3px">
-          <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="main_page.html" style="color: black; text-decoration-line: none">Hlavná stránka</a></div>
-          <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="listProducts.html" style="color: black; text-decoration-line: none">Zoznam produktov</a></div>
-          <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="about.html" style="color: black; text-decoration-line: none">O nás</a></div>
-          <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="registracia.html" style="color: black; text-decoration-line: none">Registracia</a></div>
+          <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="../main_page.html" style="color: black; text-decoration-line: none">Hlavná stránka</a></div>
+          <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="../listProducts/listProducts.html" style="color: black; text-decoration-line: none">Zoznam produktov</a></div>
+          <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="../about.html" style="color: black; text-decoration-line: none">O nás</a></div>
+          <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="registracia.php" style="color: black; text-decoration-line: none">Registracia</a></div>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-          <img src="11096490_1439627412996984_5157600893917446945_o.jpg" alt="uvod" class="img-fluid">
+          <img src="../11096490_1439627412996984_5157600893917446945_o.jpg" alt="uvod" class="img-fluid">
         </div>
     </div>
     <div class="row">
@@ -49,7 +53,7 @@
                                 <div class="collapse" id="osInf">
                                     <div class="card card-body">
                                         <div class="row">
-                                            <div class="col-5">
+                                            <div class="col-5" value>
                                                 <label for="Meno">Meno:</label>
                                             </div>
                                             <div class="col-7">

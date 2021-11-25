@@ -45,7 +45,7 @@ class DBulozisko implements IStorage
     {
         if (isset($_POST['Odoslat1'])==true) {
             if ($this->validneHeslo($_POST['heslo']) == true && $this->validnyLogin($_POST['login']) == true
-                && $this->zhodneHela($_POST['heslo'], $_POST['heslo1']) == true &&
+                && $this->validneHeslo($_POST['heslo1']) == true && $this->zhodneHela($_POST['heslo'], $_POST['heslo1']) == true &&
                 $this->validnaOsoba($_POST['Cislo_op'])==true){
                 #prihlasovacie udaje
                 $id_prihlasovacie_udaje=$this->db->query("SELECT MAX(id_prihlasovacie_udaje) FROM prihlasovanice_udaje")->fetch_assoc()['MAX(id_prihlasovacie_udaje)']+1;
@@ -83,10 +83,11 @@ class DBulozisko implements IStorage
                 $par->bind_param("siiisss", $cislo_op, $id_adresy, $id_kontaktne_udaje, $id_prihlasovacie_udaje, $meno, $priezvisko, $datum_narodenia);
                 $par->execute();
                 $this->checkDBError();
-
-                echo "Zápis do databázy sa podaril.";
+                echo "Registrácia prebehal úspešne.";
+                unset($_POST);
                 return true;
             }
+            echo "Registrácia neprebehla.";
         }
         return false;
     }
@@ -108,10 +109,13 @@ class DBulozisko implements IStorage
                         $par->bind_param("s", $heslo);
                         $par->execute();
                         $this->checkDBError();
+                        echo "Zmena hesla prebehla úspešne.";
+                        unset($_POST);
                         return true;
                     }
                 }
             }
+            echo "Zmena hesla neprebehla.";
         }
         return false;
     }
@@ -134,9 +138,12 @@ class DBulozisko implements IStorage
                     $this->db->query("DELETE FROM kontaktne_udaje WHERE id_kontektne_udaje LIKE '$id_kontektne_udaje'");
                     $this->db->query("DELETE FROM prihlasovanice_udaje WHERE id_prihlasovacie_udaje LIKE '$id_prihlasovacie_udaje'");
                     $this->db->query("DELETE FROM adresa WHERE id_adresy LIKE '$id_adresy'");
+                    echo "Odstránenie účtu prebehlo.";
+                    unset($_POST);
                     return true;
                 }
             }
+            echo "Odstránenie účtu neprebehlo.";
         }
         return false;
     }
@@ -155,9 +162,11 @@ class DBulozisko implements IStorage
                 && preg_match("/[A-Z]{2,}/", $heslo) == true) {
                 return true;
             } else {
+                echo "Heslo nemá minimálne 6 znakov alebo neobsahuje aspoň 2 veľké písmená alebo neobsahuje aspoň 2 číslice.";
                 return false;
             }
         }
+        echo "Heslo ste nezadali.";
         return false;
     }
 
@@ -169,9 +178,11 @@ class DBulozisko implements IStorage
                     return true;
                 }
             } else {
+                echo "Zadaný login je už obsadený.";
                 return false;
             }
         }
+        echo "Login ste nazadali.";
         return false;
     }
 
@@ -180,18 +191,27 @@ class DBulozisko implements IStorage
         if (isset($heslo) == true && isset($heslo1) == true) {
             if ($heslo == $heslo1) {
                 return true;
+            }else{
+                echo "Hesla sa nezhodujú.";
+                return false;
             }
         }
+        echo "Jedno z hesiel ste nezadali alebo obe.";
         return false;
     }
 
     private function validnaOsoba($op)
     {
         if (isset($op) == true) {
-            if ($this->db->query("SELECT * FROM osoba WHERE cislo_op LIKE '$op'")->num_rows == 0) {
+            if ($this->db->query("SELECT * FROM osoba WHERE cislo_op LIKE '$op'")->num_rows == 0
+                && preg_match("/^.{2,}$/", $op) == true) {
                 return true;
+            }else{
+                echo "Daná osoba už je registrovaná alebo číslo op je kratšie ako dva znaky.";
+                return false;
             }
         }
+        echo "Nezadali ste číslo občianskeho preukazu.";
         return false;
     }
 }
