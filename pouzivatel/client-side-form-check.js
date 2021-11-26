@@ -32,26 +32,69 @@ window.onload = function () {
 }
 function kontrola (hodnota = null, elementId){
     let val= "";
-    if ((hodnota==null==true || hodnota.length==0==true)&&
-        (elementId=="Meno" || elementId=="Priezvisko" || elementId=="Cislo_op" || elementId=="Datum_narodenia"
-            || elementId=="telefon" || elementId=="email" || elementId=="krajina" || elementId=="Obec" || elementId=="psc"
-            || elementId=="ulica" || elementId=="popisne" || elementId=="login" || elementId=="heslo" || elementId=="heslo1")) {
-        val+="Pole "+elementId+" musí byť zadané.";
-    }/*if(RegExp('^\\S+@\\S+\\.\\S+$').test(hodnota)!=true&&elementId=="email"==true){
-        val+="\nPole "+elementId+" musí mať stanovený formát.";
-    }*/
+    if ((hodnota==null || hodnota.length==0) &&(elementId!="telefon")) {
+        val="Pole "+elementId+" musí byť zadané.";
+    }if(RegExp('^\\S+@\\S+\\.\\S+$').test(hodnota)!=true&&elementId=="email"==true){
+        val=this.append(val, elementId);
+    }if(elementId=="telefon"&&hodnota.length>0){
+        let re = new RegExp('^\\+421[0-9]{9}$');
+        if (!re.test(hodnota)) {
+            val=this.append(val, elementId);
+        }
+    }if((elementId=="Meno" || elementId=="Priezvisko") &&hodnota.length>0){
+        let re= new RegExp('^[Á-Ž|A-Z][a-z|á-ž]{2,25}$');
+        if(!re.test(hodnota)){
+            val=this.append(val, elementId);
+        }
+    }if(elementId=="psc"&& hodnota.length>0){
+        let re= new RegExp('^[0-9]{5}$');
+        if(!re.test(hodnota)){
+            val=this.append(val, elementId);
+        }
+    }
+    if(elementId=="popisne"&&hodnota.length>0){
+        let re= new RegExp('^([0-9]{1,5}[/]{1}[0-9]{1,5})$');
+        if(!re.test(hodnota)){
+            val=this.append(val, elementId);
+        }
+    }if(elementId=="Cislo_op"&&hodnota.length>0){
+        let re= new RegExp('^[0-9A-Z]{5,20}$');
+        if(!re.test(hodnota)){
+            val=this.append(val, elementId);
+        }
+    }if(elementId=="Datum_narodenia"&&hodnota.length>0) {
+        let re = new RegExp('^[0-9-]{8,10}$');
+        if (!re.test(hodnota)) {
+            val = this.append(val, elementId);
+        }
+    }
     return val;
 }
+
+function append(val, elementId){
+    if(val==""){
+        val+="Pole "+elementId+" musí mať stanovený formát.";
+    }else{
+        val+="\nPole "+elementId+" musí mať stanovený formát.";
+    }
+    return val;
+}
+
 function fun (element){
     element.oninput = function (event) {
         let result = kontrola(event.target.value, element.id);
         let elementPlus = document.getElementById("error"+element.id);
-        if (result!=""==true) {
+        if (result!="") {
             elementPlus = document.createElement("div")
             elementPlus.id = "error"+element.id;
             elementPlus.innerText = result;
             elementPlus.classList.add("chyba");
-            element.after(elementPlus);
+            if(document.getElementById("error"+element.id)!=null){
+                document.getElementById("error"+element.id).remove();
+                element.after(elementPlus);
+            }else{
+                element.after(elementPlus);
+            }
         } else {
             if(elementPlus!=null==true){
                 elementPlus.remove();

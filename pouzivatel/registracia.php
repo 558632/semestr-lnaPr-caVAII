@@ -1,10 +1,4 @@
 <!DOCTYPE html>
-<?php
-    require "DBulozisko.php";
-    if(isset($_POST['Odoslat1'])==true||isset($_POST['Odoslat2'])==true||isset($_POST['Odoslat3'])==true){
-        $ul=new DBulozisko();
-    }
-?>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -16,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="client-side-form-check.js"></script>
+    <script src="infoZoServera.js"></script>
     <link rel="stylesheet" type="text/css" href="client-side-form-check.css">
 </head>
 <body>
@@ -28,9 +23,23 @@
           <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="registracia.php" style="color: black; text-decoration-line: none">Registracia</a></div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="imgRow">
         <div class="col-12">
           <img src="../11096490_1439627412996984_5157600893917446945_o.jpg" alt="uvod" class="img-fluid">
+        </div>
+    </div>
+    <div class="row" id="serverResponseRow">
+        <div class="col-12" style="text-align: center">
+            <?php
+            require "DBulozisko.php";
+            if(isset($_POST['Odoslat1'])||isset($_POST['Odoslat2'])||isset($_POST['Odoslat3'])){
+                $ul=new DBulozisko();
+                //echo $ul->getVarDBErrs();
+                if($ul->getVarDBErrs()!=null){
+                    echo $ul->getVarDBErrs();
+                }
+            }
+            ?>
         </div>
     </div>
     <div class="row">
@@ -197,7 +206,7 @@
                                     <div class="col-5">
                                     </div>
                                     <div class="col-7">
-                                        <input type="submit" name="Odoslat1" value="Odoslať" style="object-position: center">
+                                        <input type="submit" name="Odoslat1" value="Odoslať" style="object-position: center" data-toggle="modal" data-target="#exampleModalCenter">
                                     </div>
                                 </div>
                             </form>

@@ -5,6 +5,7 @@ require "registracia_class.php";
 class DBulozisko implements IStorage
 {
     private $db;
+    private $varDBErrs="";
 
     public function __construct()
     {
@@ -14,6 +15,12 @@ class DBulozisko implements IStorage
         $this->insert();
         $this->update();
         $this->delete();
+    }
+
+    public function getVarDBErrs(){
+        if($this->varDBErrs!=""){
+            return $this->varDBErrs;
+        }
     }
 
     public function dajVsetkyData()
@@ -45,7 +52,7 @@ class DBulozisko implements IStorage
     {
         if (isset($_POST['Odoslat1'])==true) {
             if ($this->validneHeslo($_POST['heslo']) == true && $this->validnyLogin($_POST['login']) == true
-                && $this->validneHeslo($_POST['heslo1']) == true && $this->zhodneHela($_POST['heslo'], $_POST['heslo1']) == true &&
+                && $this->zhodneHela($_POST['heslo'], $_POST['heslo1']) == true &&
                 $this->validnaOsoba($_POST['Cislo_op'])==true){
                 #prihlasovacie udaje
                 $id_prihlasovacie_udaje=$this->db->query("SELECT MAX(id_prihlasovacie_udaje) FROM prihlasovanice_udaje")->fetch_assoc()['MAX(id_prihlasovacie_udaje)']+1;
@@ -83,11 +90,14 @@ class DBulozisko implements IStorage
                 $par->bind_param("siiisss", $cislo_op, $id_adresy, $id_kontaktne_udaje, $id_prihlasovacie_udaje, $meno, $priezvisko, $datum_narodenia);
                 $par->execute();
                 $this->checkDBError();
-                echo "Registrácia prebehal úspešne.";
+                $var="Registrácia prebehla.";
+                $this->addRow($var);
                 unset($_POST);
                 return true;
             }
-            echo "Registrácia neprebehla.";
+            $var="Registrácia neprebehla.";
+            $this->addRow($var);
+            return false;
         }
         return false;
     }
@@ -109,13 +119,15 @@ class DBulozisko implements IStorage
                         $par->bind_param("s", $heslo);
                         $par->execute();
                         $this->checkDBError();
-                        echo "Zmena hesla prebehla úspešne.";
+                        $var="Zmena hesla prebehla úspšne.";
+                        $this->addRow($var);
                         unset($_POST);
                         return true;
                     }
                 }
             }
-            echo "Zmena hesla neprebehla.";
+            $var="Zmena hesla neprebehla.";
+            $this->addRow($var);
         }
         return false;
     }
@@ -138,12 +150,14 @@ class DBulozisko implements IStorage
                     $this->db->query("DELETE FROM kontaktne_udaje WHERE id_kontektne_udaje LIKE '$id_kontektne_udaje'");
                     $this->db->query("DELETE FROM prihlasovanice_udaje WHERE id_prihlasovacie_udaje LIKE '$id_prihlasovacie_udaje'");
                     $this->db->query("DELETE FROM adresa WHERE id_adresy LIKE '$id_adresy'");
-                    echo "Odstránenie účtu prebehlo.";
+                    $var="Odstránenie účtu prebehlo.";
+                    $this->addRow($var);
                     unset($_POST);
                     return true;
                 }
             }
-            echo "Odstránenie účtu neprebehlo.";
+            $var="Odstránenie účtu neprebehlo.";
+            $this->addRow($var);
         }
         return false;
     }
@@ -162,12 +176,20 @@ class DBulozisko implements IStorage
                 && preg_match("/[A-Z]{2,}/", $heslo) == true) {
                 return true;
             } else {
-                echo "Heslo nemá minimálne 6 znakov alebo neobsahuje aspoň 2 veľké písmená alebo neobsahuje aspoň 2 číslice.";
+                $var="Heslo nemá stanovený formát.";
+                $this->addRow($var);
                 return false;
             }
         }
-        echo "Heslo ste nezadali.";
         return false;
+    }
+
+    private function addRow($string){
+        if($this->varDBErrs==""){
+            $this->varDBErrs=$string;
+        }else{
+            $this->varDBErrs=$this->varDBErrs."<br>".$string;
+        }
     }
 
     private function validnyLogin($login)
@@ -176,13 +198,17 @@ class DBulozisko implements IStorage
             if (preg_match("/^.{2,}$/", $login) == true) {
                 if ($this->db->query("SELECT * FROM prihlasovanice_udaje WHERE login LIKE '$login'")->num_rows == 0) {
                     return true;
+                }else{
+                    $var="Login je už obsadený.";
+                    $this->addRow($var);
+                    return false;
                 }
             } else {
-                echo "Zadaný login je už obsadený.";
+                $var="Login nemá stanovený formát.";
+                $this->addRow($var);
                 return false;
             }
         }
-        echo "Login ste nazadali.";
         return false;
     }
 
@@ -192,11 +218,11 @@ class DBulozisko implements IStorage
             if ($heslo == $heslo1) {
                 return true;
             }else{
-                echo "Hesla sa nezhodujú.";
+                $var="Heslá sa nezhodujú.";
+                $this->addRow($var);
                 return false;
             }
         }
-        echo "Jedno z hesiel ste nezadali alebo obe.";
         return false;
     }
 
@@ -207,11 +233,11 @@ class DBulozisko implements IStorage
                 && preg_match("/^.{2,}$/", $op) == true) {
                 return true;
             }else{
-                echo "Daná osoba už je registrovaná alebo číslo op je kratšie ako dva znaky.";
+                $var="Daná osoba už je registrovaná.";
+                $this->addRow($var);
                 return false;
             }
         }
-        echo "Nezadali ste číslo občianskeho preukazu.";
         return false;
     }
 }

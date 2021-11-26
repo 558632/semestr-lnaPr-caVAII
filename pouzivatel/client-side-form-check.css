@@ -2,3 +2,13 @@
     background-color: lightcyan;
     color: red;
 }
+@media (max-width: 750px) {
+    body{
+        background-color: darkseagreen;
+    }
+}
+@media (min-width: 751px) {
+    body{
+        background-color: #ddffda;
+    }
+}
