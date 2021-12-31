@@ -161,6 +161,7 @@ class DBulozisko implements IStorage
         }
         return false;
     }
+
     private function checkDBError()
     {
         if ($this->db->error) {

@@ -10,7 +10,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="client-side-form-check.js"></script>
-    <script src="infoZoServera.js"></script>
     <link rel="stylesheet" type="text/css" href="client-side-form-check.css">
 </head>
 <body>
@@ -21,6 +20,7 @@
           <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="../listProducts/listProducts.html" style="color: black; text-decoration-line: none">Zoznam produktov</a></div>
           <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="../about.html" style="color: black; text-decoration-line: none">O nás</a></div>
           <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="registracia.php" style="color: black; text-decoration-line: none">Registracia</a></div>
+          <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="prihlasenie/prihlasenie_page.php" style="color: black; text-decoration-line: none">Prihlasenie</a></div>
         </div>
     </div>
     <div class="row" id="imgRow">
