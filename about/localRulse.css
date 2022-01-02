@@ -1,0 +1,68 @@
+/*1*/
+button.by_municipality, button.all_municipalities{
+    color: blue;
+    border-style: solid;
+    border-bottom-color: white;
+    border-bottom-width: 5px;
+    border-top-color: yellow;
+    border-top-width: 5px;
+    font-weight: bolder;
+    font-style: italic;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+/*2*/
+button.by_municipality:hover:first-letter{
+    color: darkblue;
+    border-style: inset;
+    border-bottom-color: yellow;
+    border-bottom-width: 8px;
+    border-top-color: red;
+    border-top-width: 8px;
+    font-weight: normal;
+    font-style: normal;
+}
+/*3*/
+button.all_municipalities:hover{
+    margin-right: 20px;
+    background-color: red;
+    color: white;
+    font-size: large;
+    font-style: normal;
+    font-weight: normal;
+    font-variant-caps: petite-caps;
+    border-left-width: 15px;
+    border-right-color: green;
+}
+/*4*/
+/*dieťa*/
+div [id=municipality_bratislava] > strong{
+    color: darkmagenta;
+    letter-spacing: 5px;
+}
+/*5*/
+div [id=municipalities_others] > strong:hover{
+    font-weight: normal;
+    word-spacing: 10px;
+}
+/*6*/
+[id=miesta] > div.by_municipality > strong::selection{
+    background-color: black;
+    color: white;
+}
+/*7*/
+div[id=text] > h3{
+    background-color: yellow;
+}
+/*8*/
+div[id=text] > h3:hover:first-letter{
+    background-color: white;
+}
+/*9*/
+div[id=text] > h3:hover{
+    background-color: yellowgreen;
+}
+/*10*/
+div[id=text] > p:hover:after{
+    content: " I AM HERE.";
+}

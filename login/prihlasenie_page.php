@@ -15,7 +15,7 @@
             crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="prihlasenie.css">
+    <link rel="stylesheet" type="text/css" href="./../globalRules.css">
     <script>
         let buffer=5;
         function sendToServer() {
@@ -47,23 +47,23 @@
 <div class="container">
     <div class="sticky-top">
         <div class="row" style="padding: 3px">
-            <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a
-                        href="../../main_page.html" style="color: black; text-decoration-line: none">Hlavná stránka</a>
+            <div class="col-md-3 main_menu"><a
+                        href="../mainPage/main_page.html" class="main_menu">Hlavná stránka</a>
             </div>
-            <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a
-                        href="../../listProducts/listProducts.html" style="color: black; text-decoration-line: none">Zoznam
+            <div class="col-md-3 main_menu"><a
+                        href="../listProducts/listProducts.html" class="main_menu">Zoznam
                     produktov</a></div>
-            <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a
-                        href="../../about.html" style="color: black; text-decoration-line: none">O nás</a></div>
-            <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a
-                        href="../registracia.php" style="color: black; text-decoration-line: none">Registracia</a></div>
-            <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a
-                        href="prihlasenie_page.php" style="color: black; text-decoration-line: none">Prihlasenie</a></div>
+            <div class="col-md-3 main_menu"><a
+                        href="../about/about.html" class="main_menu">O nás</a></div>
+            <div class="col-md-3 main_menu"><a
+                        href="../accountAdministration/registracia.php" class="main_menu">Registracia</a></div>
+            <div class="col-md-3 main_menu"><a
+                        href="prihlasenie_page.php" class="main_menu">Prihlasenie</a></div>
         </div>
     </div>
     <div class="row" id="imgRow" >
         <div class="col-12">
-            <img src="../../11096490_1439627412996984_5157600893917446945_o.jpg" alt="uvod" class="img-fluid">
+            <img src="../obrazok_reprezentacny_1.jpg" alt="uvod" class="img-fluid">
         </div>
     </div>
     <div class="row" id="serverResponseRow">

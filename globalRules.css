@@ -1,0 +1,20 @@
+/*štýly pre všetky web stránky*/
+@media (max-width: 750px) {
+    body{
+        background-color: darkseagreen;
+    }
+}
+@media (min-width: 751px) {
+    body{
+        background-color: #ddffda;
+    }
+}
+div.main_menu{
+    text-align: center;
+    background-color: aqua;
+    border-style: groove;
+}
+a.main_menu{
+    color: black;
+    text-decoration-line: none;
+}

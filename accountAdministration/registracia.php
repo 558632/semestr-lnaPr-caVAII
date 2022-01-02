@@ -10,22 +10,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="client-side-form-check.js"></script>
+    <link rel="stylesheet" type="text/css" href="./../globalRules.css">
     <link rel="stylesheet" type="text/css" href="client-side-form-check.css">
 </head>
 <body>
 <div class="container">
     <div class="sticky-top">
         <div class="row" style="padding: 3px">
-          <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="../main_page.html" style="color: black; text-decoration-line: none">Hlavná stránka</a></div>
-          <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="../listProducts/listProducts.html" style="color: black; text-decoration-line: none">Zoznam produktov</a></div>
-          <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="../about.html" style="color: black; text-decoration-line: none">O nás</a></div>
-          <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="registracia.php" style="color: black; text-decoration-line: none">Registracia</a></div>
-          <div class="col-md-3" style="text-align: center; background-color: aqua; border-style: groove"><a href="prihlasenie/prihlasenie_page.php" style="color: black; text-decoration-line: none">Prihlasenie</a></div>
+          <div class="col-md-3 main_menu"><a class="main_menu" href="../mainPage/main_page.html">Hlavná stránka</a></div>
+          <div class="col-md-3 main_menu"><a class="main_menu" href="../listProducts/listProducts.html">Zoznam produktov</a></div>
+          <div class="col-md-3 main_menu"><a class="main_menu" href="../about/about.html">O nás</a></div>
+          <div class="col-md-3 main_menu"><a class="main_menu" href="registracia.php">Registracia</a></div>
+          <div class="col-md-3 main_menu"><a class="main_menu" href="../login/prihlasenie_page.php">Prihlasenie</a></div>
         </div>
     </div>
     <div class="row" id="imgRow">
         <div class="col-12">
-          <img src="../11096490_1439627412996984_5157600893917446945_o.jpg" alt="uvod" class="img-fluid">
+          <img src="../obrazok_reprezentacny_1.jpg" alt="uvod" class="img-fluid">
         </div>
     </div>
     <div class="row" id="serverResponseRow">

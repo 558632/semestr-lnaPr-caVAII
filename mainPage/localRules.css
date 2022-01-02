@@ -1,0 +1,79 @@
+/*1*/
+img.clickable.notZoomed2:hover, img.clickable.notZoomed1:hover{
+    cursor: zoom-in;
+}
+/*2*/
+img.clickable.notZoomed1:hover{
+    border: 5px double red;
+    background-color: yellow;
+    opacity: 80%;
+}
+/*3*/
+button.view_abolition{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-color: red;
+    border-width: 1px;
+    border-style: solid;
+    background-color: #ffbab9;
+    font-weight: bold;
+    font-style: normal;
+    word-spacing: 10px;
+    font-variant-caps: all-petite-caps;
+}
+/*4*/
+button.view_abolition:hover{
+    filter: brightness(80%);
+    font-weight: normal;
+    font-variant-caps: normal;
+}
+/*5*/
+img.clickable.notZoomed2:hover{
+    animation-name: anim1;
+    animation-duration: 2s;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes anim1 {
+    from {opacity:100%}
+    to {opacity:20%}
+}
+/*6*/
+img.clickable.notZoomed1{
+    animation-name: anim2;
+    animation-duration: 10s;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes anim2 {
+    from {margin-top: 0px}
+    to {margin-top: 200px}
+}
+/*7*/
+img.clickable.notZoomed2{
+    margin-bottom: 50px;
+    position: relative;
+    animation-name: anim3;
+    animation-duration: 5s;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+@keyframes anim3 {
+    from {top: 0px}
+    to {top: 50px}
+}
+/*8*/
+p{
+    animation-name: anim4;
+    animation-duration: 5s;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+@keyframes anim4 {
+    from {font-size: 11px; color: greenyellow; opacity: 100%; background: -moz-default-background-color; font-weight: normal}
+    to {font-size: 16px; color: black; opacity: 20%; background: red; font-weight: bold}
+}
