@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,12 +18,13 @@
             crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../globalFunctions.js"></script>
     <link rel="stylesheet" type="text/css" href="./../globalRules.css">
     <script>
         let buffer=5;
         function sendToServer() {
-            let username = $("#username_prihlasenie").val();
-            let password = $("#password_prihlasenie").val();
+            let username = document.getElementById("username_prihlasenie").value;
+            let password = document.getElementById("password_prihlasenie").value;
             const XMLHttp = new XMLHttpRequest();
             XMLHttp.onreadystatechange = function () {
                 if (this.readyState != 4 || this.status != 200) {
@@ -29,12 +33,22 @@
                 if(buffer>0){
                     document.getElementById("theContent").append(this.responseText);
                     buffer--;
+                    if(this.responseText.includes('3', 35)==true){
+                        sleep(3000).then(()=>{
+                            window.open("./../mainPage/main_page.php","_self");
+                        });
+                    }
                 }else{
                     buffer=5;
                     document.getElementById("theContent").remove();
                     let element=`<pre id="theContent"></pre>`;
                     document.getElementById("serverResponseCol").innerHTML=element;
                     document.getElementById("theContent").append(this.responseText);
+                    if(this.responseText.includes('3', 35)==true){
+                        sleep(3000).then(()=>{
+                                window.open("./../mainPage/main_page.php","_self");
+                        });
+                    }
                 }
             };
             XMLHttp.open("POST", "prihlasenie_server.php", true);
@@ -47,18 +61,11 @@
 <div class="container">
     <div class="sticky-top">
         <div class="row" style="padding: 3px">
-            <div class="col-md-3 main_menu"><a
-                        href="../mainPage/main_page.html" class="main_menu">Hlavná stránka</a>
-            </div>
-            <div class="col-md-3 main_menu"><a
-                        href="../listProducts/listProducts.html" class="main_menu">Zoznam
-                    produktov</a></div>
-            <div class="col-md-3 main_menu"><a
-                        href="../about/about.html" class="main_menu">O nás</a></div>
-            <div class="col-md-3 main_menu"><a
-                        href="../accountAdministration/registracia.php" class="main_menu">Registracia</a></div>
-            <div class="col-md-3 main_menu"><a
-                        href="prihlasenie_page.php" class="main_menu">Prihlasenie</a></div>
+            <div class="col-md-3 main_menu"><a href="../mainPage/main_page.php" class="main_menu">Hlavná stránka</a></div>
+            <div class="col-md-3 main_menu"><a href="../listProducts/listProducts.php" class="main_menu">Zoznam produktov</a></div>
+            <div class="col-md-3 main_menu"><a href="../about/about.php" class="main_menu">O nás</a></div>
+            <div class="col-md-3 main_menu"><a class="main_menu" href="../registration/registracia_page.php">Registracia</a></div>
+            <div class="col-md-3 main_menu"><a href="prihlasenie_page.php" class="main_menu">Prihlasenie</a></div>
         </div>
     </div>
     <div class="row" id="imgRow" >

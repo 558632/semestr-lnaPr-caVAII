@@ -1,40 +1,24 @@
-//registracia-page
-
 window.onload = function () {
-    element = document.getElementById("Meno");
-    fun(element);
-    element1=document.getElementById("Priezvisko");
-    fun(element1);
-    element2 = document.getElementById("Cislo_op");
-    fun(element2);
-    element3 = document.getElementById("Datum_narodenia");
-    fun(element3);
-    element4 = document.getElementById("telefon");
-    fun(element4);
-    element5 = document.getElementById("email");
-    fun(element5);
-    element6 = document.getElementById("krajina");
-    fun(element6);
-    element7 = document.getElementById("Obec");
-    fun(element7);
-    element8 = document.getElementById("psc");
-    fun(element8);
-    element9 = document.getElementById("ulica");
-    fun(element9);
-    element10 = document.getElementById("popisne");
-    fun(element10);
-    element11 = document.getElementById("login");
-    fun(element11);
-    element12 = document.getElementById("heslo");
-    fun(element12);
-    element13 = document.getElementById("heslo1");
-    fun(element13);
+    fun(document.getElementById("Meno"));
+    fun(document.getElementById("Priezvisko"));
+    fun(document.getElementById("Cislo_op"));
+    fun(document.getElementById("Datum_narodenia"));
+    fun(document.getElementById("telefon"));
+    fun(document.getElementById("email"));
+    fun(document.getElementById("krajina"));
+    fun(document.getElementById("Obec"));
+    fun(document.getElementById("psc"));
+    fun(document.getElementById("ulica"));
+    fun(document.getElementById("popisne"));
+    fun(document.getElementById("login"));
+    fun(document.getElementById("heslo"));
+    fun(document.getElementById("heslo1"));
 }
-function kontrola (hodnota = null, elementId){
+function kontrola (hodnota, elementId){
     let val= "";
-    if ((hodnota==null || hodnota.length==0) &&(elementId!="telefon")) {
+    if ((hodnota==null || hodnota.length==0) && (elementId!="telefon")) {
         val="Pole "+elementId+" musí byť zadané.";
-    }if(RegExp('^\\S+@\\S+\\.\\S+$').test(hodnota)!=true&&elementId=="email"==true){
+    }if(!RegExp('^\\S+@\\S+\\.\\S+$').test(hodnota) && elementId=="email"){
         val=this.append(val, elementId);
     }if(elementId=="telefon"&&hodnota.length>0){
         let re = new RegExp('^\\+421[0-9]{9}$');
@@ -84,23 +68,19 @@ function fun (element){
     element.oninput = function (event) {
         let result = kontrola(event.target.value, element.id);
         let elementPlus = document.getElementById("error"+element.id);
-        if (result!="") {
-            elementPlus = document.createElement("div")
-            elementPlus.id = "error"+element.id;
-            elementPlus.innerText = result;
-            elementPlus.classList.add("chyba");
-            if(document.getElementById("error"+element.id)!=null){
-                document.getElementById("error"+element.id).remove();
-                element.after(elementPlus);
-            }else{
-                element.after(elementPlus);
+        if(elementPlus!=null && result==""){
+            elementPlus.remove()
+        }else if(result!=""){
+            if(elementPlus!=null){
+                elementPlus.remove()
             }
-        } else {
-            if(elementPlus!=null==true){
-                elementPlus.remove();
-            }
+            let newElementPlus = document.createElement("div");
+            newElementPlus.id = "error"+element.id;
+            newElementPlus.innerText = result;
+            newElementPlus.classList.add("chyba");
+            element.after(newElementPlus);
         }
-        if (document.querySelectorAll(".chyba").length>0==true) {
+        if (document.querySelectorAll("div.chyba").length>0) {
             document.getElementsByName("Odoslat1")[0].disabled=true;
         } else {
             document.getElementsByName("Odoslat1")[0].disabled=false;

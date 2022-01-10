@@ -1,21 +1,24 @@
 <?php
+    session_start();
     if($_POST['username_prihlasenie']=="" || $_POST['password_prihlasenie']==""){
         echo "Nezadali ste meno alebo heslo alebo ani jedno.\n";
     }else{
         $check = new checkLogin($_POST['username_prihlasenie'], $_POST['password_prihlasenie']);
         if($check->platnyLogin()==false){
             echo "Neplatný login.\n";
-            exit(1);
+            return 1;
         }
         if($check->platneHeslo()==false){
             echo "Neplatné heslo.\n";
-            exit(2);
+            return 2;
         }
         if($check->prihlasUsera()==false){
             echo "Používateľ je už prihlásený.\n";
-            exit(3);
+            return 3;
         }
-        echo "Prihlásenie prebehlo v poriadku.\n";
+        $_SESSION['isLoggedIn']=$_POST['username_prihlasenie'];
+        echo "Prihlásenie prebehlo v poriadku.\nO 3 sekundy budete presmerovaní na hlavnú stránku.";
+        return 4;
     }
     class checkLogin
     {

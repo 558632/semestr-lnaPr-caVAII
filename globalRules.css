@@ -18,3 +18,7 @@ a.main_menu{
     color: black;
     text-decoration-line: none;
 }
+div.chyba{
+    background-color: lightcyan;
+    color: red;
+}

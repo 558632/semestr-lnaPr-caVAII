@@ -62,3 +62,13 @@ table > tr > th::selection, table > tbody > tr > td::selection{
 table > tbody > tr > td:nth-child(2):hover:first-letter{
     text-transform:lowercase;
 }
+/*13*/
+div[id=serverResponse_insertion]{
+    animation-name: anim1;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+}
+@keyframes anim1 {
+    from {background: -moz-default-background-color}
+    to {background: white}
+}

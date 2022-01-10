@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,17 +14,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="client-side-form-check.js"></script>
     <link rel="stylesheet" type="text/css" href="./../globalRules.css">
-    <link rel="stylesheet" type="text/css" href="client-side-form-check.css">
 </head>
 <body>
 <div class="container">
     <div class="sticky-top">
         <div class="row" style="padding: 3px">
-          <div class="col-md-3 main_menu"><a class="main_menu" href="../mainPage/main_page.html">Hlavná stránka</a></div>
-          <div class="col-md-3 main_menu"><a class="main_menu" href="../listProducts/listProducts.html">Zoznam produktov</a></div>
-          <div class="col-md-3 main_menu"><a class="main_menu" href="../about/about.html">O nás</a></div>
-          <div class="col-md-3 main_menu"><a class="main_menu" href="registracia.php">Registracia</a></div>
-          <div class="col-md-3 main_menu"><a class="main_menu" href="../login/prihlasenie_page.php">Prihlasenie</a></div>
+          <div class="col-md-3 main_menu"><a class="main_menu" href="../mainPage/main_page.php">Hlavná stránka</a></div>
+          <div class="col-md-3 main_menu"><a class="main_menu" href="../listProducts/listProducts.php">Zoznam produktov</a></div>
+          <div class="col-md-3 main_menu"><a class="main_menu" href="../about/about.php">O nás</a></div>
+          <div class="col-md-3 main_menu"><a class="main_menu" href="../login/prihlasenie_page.php">Prihlásenie</a></div>
+          <div class="col-md-3 main_menu"><a class="main_menu" href="registracia_page.php">Registracia</a></div>
         </div>
     </div>
     <div class="row" id="imgRow">
@@ -32,10 +34,9 @@
     <div class="row" id="serverResponseRow">
         <div class="col-12" style="text-align: center">
             <?php
-            require "DBulozisko.php";
-            if(isset($_POST['Odoslat1'])||isset($_POST['Odoslat2'])||isset($_POST['Odoslat3'])){
+            require "registracia_server.php";
+            if(isset($_POST['Odoslat1'])){
                 $ul=new DBulozisko();
-                //echo $ul->getVarDBErrs();
                 if($ul->getVarDBErrs()!=null){
                     echo $ul->getVarDBErrs();
                 }
@@ -45,14 +46,14 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion accordion-flush" id="accordion1">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                             Vykonať registráciu
                         </button>
                     </h2>
-                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordion1">
                         <div class="accordion-body">
                             <form method="post">
                                 <p>
@@ -91,7 +92,7 @@
                                                 <label for="Datum_narodenia">Dátum narodenia:</label>
                                             </div>
                                             <div class="col-7">
-                                                <input type="text" name="Datum_narodenia" id="Datum_narodenia">
+                                                <input type="text" name="Datum_narodenia" id="Datum_narodenia" placeholder="yyyy-m-d">
                                             </div>
                                         </div>
                                     </div>
@@ -204,106 +205,8 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5">
-                                    </div>
-                                    <div class="col-7">
-                                        <input type="submit" name="Odoslat1" value="Odoslať" style="object-position: center" data-toggle="modal" data-target="#exampleModalCenter">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                            Zmeniť heslo pužívateľa
-                        </button>
-                    </h2>
-                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-                            <form method="post">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <label for="login1">Prihlasovacie meno:</label>
-                                    </div>
-                                    <div class="col-7">
-                                        <input type="text" name="login1" id="login1">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <label for="heslo2">Staré heslo používateľa:</label>
-                                    </div>
-                                    <div class="col-7">
-                                        <input type="password" name="heslo2" id="heslo2"><br>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <label for="heslo3">Nové heslo používateľa:</label>
-                                    </div>
-                                    <div class="col-7">
-                                        <input type="password" name="heslo3" id="heslo3"><br>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <label for="heslo4">Nové heslo znova:</label>
-                                    </div>
-                                    <div class="col-7">
-                                        <input type="password" name="heslo4" id="heslo4"><br>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                    </div>
-                                    <div class="col-7">
-                                        <input type="submit" name="Odoslat2" value="Odoslať" style="object-position: center">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                            Odstrániť účet používateľa
-                        </button>
-                    </h2>
-                    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-                            <form method="post">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <label for="Cislo_op2">Číčslo občianskeho preukazu:</label>
-                                    </div>
-                                    <div class="col-7">
-                                        <input type="text" name="Cislo_op2" id="Cislo_op2">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <label for="login2">Prihlasovacie meno:</label>
-                                    </div>
-                                    <div class="col-7">
-                                        <input type="text" name="login2" id="login2">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <label for="heslo5">Heslo používateľa:</label>
-                                    </div>
-                                    <div class="col-7">
-                                        <input type="password" name="heslo5" id="heslo5"><br>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                    </div>
-                                    <div class="col-7">
-                                        <input type="submit" name="Odoslat3" value="Odoslať" style="object-position: center">
+                                    <div class="col-md-12" style="text-align: center">
+                                        <input type="submit" name="Odoslat1" value="Odoslať">
                                     </div>
                                 </div>
                             </form>

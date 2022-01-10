@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,11 +35,18 @@
 <div class="container" id="containter1">
     <div class="sticky-top">
         <div class="row" style="padding: 3px">
-            <div class="col-md-3 main_menu"><a href="main_page.html" class="main_menu">Hlavná stránka</a></div>
-            <div class="col-md-3 main_menu"><a href="../listProducts/listProducts.html" class="main_menu">Zoznam produktov</a></div>
-            <div class="col-md-3 main_menu"><a href="../about/about.html" class="main_menu">O nás</a></div>
-            <div class="col-md-3 main_menu"><a href="./../accountAdministration/registracia.php" class="main_menu">Registracia</a></div>
-            <div class="col-md-3 main_menu"><a href="../login/prihlasenie_page.php" class="main_menu">Prihlasenie</a></div>
+            <div class="col-md-3 main_menu"><a href="main_page.php" class="main_menu">Hlavná stránka</a></div>
+            <div class="col-md-3 main_menu"><a href="../listProducts/listProducts.php" class="main_menu">Zoznam produktov</a></div>
+            <div class="col-md-3 main_menu"><a href="../about/about.php" class="main_menu">O nás</a></div>
+            <?php
+            if(isset($_SESSION['isLoggedIn'])){
+                echo '<div class="col-md-3 main_menu"><a class="main_menu" href="../logout/logout_page.php">Odhlásenie</a></div>
+                <div class="col-md-3 main_menu"><a class="main_menu" href="../userAdministration/user_administration.php">Používateľ</a></div>';
+            }else{
+                echo '<div class="col-md-3 main_menu"><a class="main_menu" href="../login/prihlasenie_page.php">Prihlásenie</a></div>
+                <div class="col-md-3 main_menu"><a class="main_menu" href="../registration/registracia_page.php">Registracia</a></div>';
+            }
+            ?>
         </div>
     </div>
     <div class="row">
