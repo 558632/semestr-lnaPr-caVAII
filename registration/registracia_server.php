@@ -23,7 +23,7 @@ class DBulozisko
                 #prihlasovacie udaje
                 $id_prihlasovacie_udaje=$this->db->query("SELECT MAX(id_prihlasovacie_udaje) FROM prihlasovanice_udaje")->fetch_assoc()['MAX(id_prihlasovacie_udaje)']+1;
                 $login=$_POST['login'];
-                $heslo=$_POST['heslo'];
+                $heslo=password_hash($_POST['heslo'], PASSWORD_DEFAULT);
                 $par=$this->db->prepare("INSERT INTO prihlasovanice_udaje(id_prihlasovacie_udaje, login, heslo, jePrihlaseny) VALUES(?, ?, ?, ?)");
                 $status=0;
                 $par->bind_param("issi", $id_prihlasovacie_udaje, $login, $heslo, $status);

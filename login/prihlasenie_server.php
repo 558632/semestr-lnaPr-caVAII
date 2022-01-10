@@ -48,7 +48,7 @@
             }
         }
         public function platneHeslo(){
-            if($this->db->query("SELECT heslo FROM prihlasovanice_udaje WHERE login LIKE '$this->meno'")->fetch_assoc()['heslo'] == $this->heslo){
+            if(password_verify($this->heslo, $this->db->query("SELECT heslo FROM prihlasovanice_udaje WHERE login LIKE '$this->meno'")->fetch_assoc()['heslo'])){
                 return true;
             }else{
                 return false;

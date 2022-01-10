@@ -21,7 +21,7 @@ class DBulozisko{
                     return false;
                 }
                 $username=$_SESSION['isLoggedIn'];
-                if($this->db->query("SELECT heslo FROM prihlasovanice_udaje WHERE login LIKE '$username'")->fetch_assoc()['heslo']!=$_POST['password_for_modification1']){
+                if(!password_verify($_POST['password_for_modification1'], $this->db->query("SELECT heslo FROM prihlasovanice_udaje WHERE login LIKE '$username'")->fetch_assoc()['heslo'])){
                     $this->addRow("Neplatné heslo.");
                     $this->addRow("Zmena mena a priezvisko neprebehla.");
                     return false;
@@ -63,7 +63,7 @@ class DBulozisko{
                     $this->addRow("Neplatný login.");
                     $this->addRow("Zmena hesla neprebehla.");
                     return false;
-                }if($this->db->query("SELECT heslo FROM prihlasovanice_udaje WHERE login LIKE '$login'")->fetch_assoc()['heslo']!=$_POST['heslo2']){
+                }if(!password_verify($_POST['heslo2'], $this->db->query("SELECT heslo FROM prihlasovanice_udaje WHERE login LIKE '$login'")->fetch_assoc()['heslo'])){
                     $this->addRow("Neplatné heslo.");
                     $this->addRow("Zmena hesla neprebehla.");
                     return false;
@@ -79,7 +79,7 @@ class DBulozisko{
                     return false;
                 }
                 $id_prihlasovacie_udaje=$this->db->query("SELECT id_prihlasovacie_udaje FROM prihlasovanice_udaje WHERE login LIKE '$login'")->fetch_assoc()['id_prihlasovacie_udaje'];
-                $heslo=$_POST['heslo3'];
+                $heslo=password_hash($_POST['heslo3'], PASSWORD_DEFAULT);
                 $par=$this->db->prepare("UPDATE prihlasovanice_udaje SET heslo = ? WHERE id_prihlasovacie_udaje = $id_prihlasovacie_udaje");
                 $par->bind_param("s", $heslo);
                 $par->execute();
@@ -114,7 +114,7 @@ class DBulozisko{
                     $this->addRow("Cislo op neexistuje v databáze.");
                     $this->addRow("Odstránenie účtu neprebehlo.");
                     return false;
-                }if($this->db->query("SELECT heslo FROM prihlasovanice_udaje WHERE login LIKE '$login'")->fetch_assoc()['heslo']!=$_POST['heslo5']){
+                }if(!password_verify($_POST['heslo5'], $this->db->query("SELECT heslo FROM prihlasovanice_udaje WHERE login LIKE '$login'")->fetch_assoc()['heslo'])){
                     $this->addRow("Neplatné heslo.");
                     $this->addRow("Odstránenie účtu neprebehlo.");
                     return false;
