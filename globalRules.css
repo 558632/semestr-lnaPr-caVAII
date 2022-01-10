@@ -22,3 +22,10 @@ div.chyba{
     background-color: lightcyan;
     color: red;
 }
+div.current_data{
+    background-color: darkgrey;
+    color: white;
+    font-weight: bold;
+    font-size: 11px;
+    font-style: italic;
+}

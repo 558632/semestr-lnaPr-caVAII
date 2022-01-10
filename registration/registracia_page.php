@@ -36,10 +36,8 @@ session_start();
             <?php
             require "registracia_server.php";
             if(isset($_POST['Odoslat1'])){
-                $ul=new DBulozisko();
-                if($ul->getVarDBErrs()!=null){
-                    echo $ul->getVarDBErrs();
-                }
+                $instancia=new serverResponse();
+                echo $instancia;
             }
             ?>
         </div>

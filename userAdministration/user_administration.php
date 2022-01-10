@@ -36,10 +36,8 @@ session_start();
             <?php
             require "user_administration_server.php";
             if(isset($_POST['Odoslat2'])||isset($_POST['Odoslat3'])||isset($_POST['Odoslat4'])){
-                $ul=new DBulozisko();
-                if($ul->getVarDBErrs()!=null){
-                    echo $ul->getVarDBErrs();
-                }
+                $response=new serverResponse();
+                echo $response;
             }
             ?>
         </div>
@@ -89,7 +87,9 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12" style="text-align: center">
+                                    <div class="col-5">
+                                    </div>
+                                    <div class="col-7">
                                         <input type="submit" name="Odoslat2" value="Odoslať">
                                     </div>
                                 </div>
@@ -156,6 +156,9 @@ session_start();
                                     </div>
                                     <div class="col-7">
                                         <input type="password" name="password_for_modification1" id="password_for_modification1">
+                                        <div class="current_data">
+                                            <?php echo "Váše používateľské meno: " . $_SESSION['isLoggedIn']?>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -164,6 +167,9 @@ session_start();
                                     </div>
                                     <div class="col-7">
                                         <input type="text" name="name_modification1" id="name_modification1">
+                                        <div class="current_data">
+                                            <?php echo "Váše meno: " . getName($_SESSION['isLoggedIn'])?>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -171,7 +177,10 @@ session_start();
                                         <label for="suername_modification1">Nové Priezvisko:</label>
                                     </div>
                                     <div class="col-7">
-                                        <input type="text" name="suername_modification1" id="suername_modification1"><br>
+                                        <input type="text" name="suername_modification1" id="suername_modification1">
+                                        <div class="current_data">
+                                            <?php echo "Váše priezvisko: " . getSurname($_SESSION['isLoggedIn'])?>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">

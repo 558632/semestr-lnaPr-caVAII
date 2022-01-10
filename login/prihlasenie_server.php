@@ -1,14 +1,15 @@
 <?php
     session_start();
+    require "./../globalFunctions.php";
     if($_POST['username_prihlasenie']=="" || $_POST['password_prihlasenie']==""){
         echo "Nezadali ste meno alebo heslo alebo ani jedno.\n";
     }else{
         $check = new checkLogin($_POST['username_prihlasenie'], $_POST['password_prihlasenie']);
-        if($check->platnyLogin()==false){
+        if(!usernameExistence($_POST['username_prihlasenie'])){
             echo "Neplatný login.\n";
             return 1;
         }
-        if($check->platneHeslo()==false){
+        if(!passwordValidity($_POST['password_prihlasenie'], $_POST['username_prihlasenie'])){
             echo "Neplatné heslo.\n";
             return 2;
         }
@@ -29,26 +30,12 @@
         public function __construct($paMeno, $paHeslo)
         {
             $this->db = new mysqli('localhost', 'root', 'dtb456', 'db1');
-            $this->checkDBError();
+            checkDBError($this->db);
             $this->meno=$paMeno;
             $this->heslo=$paHeslo;
         }
-        public function platnyLogin(){
-            if ($this->db->query("SELECT * FROM prihlasovanice_udaje WHERE login LIKE '$this->meno'")->num_rows == 0) {
-                return false;
-            }else{
-                return true;
-            }
-        }
         private function jePrihlaseny(){
             if ($this->db->query("SELECT jePrihlaseny FROM prihlasovanice_udaje WHERE login LIKE '$this->meno'")->fetch_assoc()['jePrihlaseny'] == 1) {
-                return true;
-            }else{
-                return false;
-            }
-        }
-        public function platneHeslo(){
-            if(password_verify($this->heslo, $this->db->query("SELECT heslo FROM prihlasovanice_udaje WHERE login LIKE '$this->meno'")->fetch_assoc()['heslo'])){
                 return true;
             }else{
                 return false;
@@ -63,12 +50,6 @@
                 return true;
             }
             return false;
-        }
-        private function checkDBError()
-        {
-            if ($this->db->error) {
-                die("DB error:" . $this->db->error);
-            }
         }
     }
 ?>
