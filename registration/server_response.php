@@ -1,7 +1,7 @@
 <?php
 require "./../globalFunctions.php";
-class serverResponse
-{
+require "./../serverResponseInterface.php";
+class serverResponseRegistration implements serverResponseInterface {
     private mysqli $db;
     private string $response="";
 
@@ -24,24 +24,28 @@ class serverResponse
             $par->execute();
             checkDBError($this->db);
             #adresa
-            $id_adresy=$this->db->query("SELECT MAX(id_adresy) FROM adresa")->fetch_assoc()['MAX(id_adresy)']+1;
-            $krajina=$_POST['krajina'];
-            $obec=$_POST['Obec'];
-            $psc=$_POST['psc'];
-            $ulica=$_POST['ulica'];
-            $cislo_popisne=$_POST['popisne'];
-            $par=$this->db->prepare("INSERT INTO adresa(id_adresy, krajina, obec, psc, ulica, cislo_popisne) VALUES(?, ?, ?, ?, ?, ?)");
-            $par->bind_param("isssss", $id_adresy, $krajina, $obec, $psc, $ulica, $cislo_popisne);
-            $par->execute();
-            checkDBError($this->db);
+            if(!($id_adresy=addressRecExistence($_POST['krajina'], $_POST['Obec'], $_POST['psc'], $_POST['ulica'], $_POST['popisne']))){
+                $id_adresy=$this->db->query("SELECT MAX(id_adresy) FROM adresa")->fetch_assoc()['MAX(id_adresy)']+1;
+                $krajina=$_POST['krajina'];
+                $obec=$_POST['Obec'];
+                $psc=$_POST['psc'];
+                $ulica=$_POST['ulica'];
+                $cislo_popisne=$_POST['popisne'];
+                $par=$this->db->prepare("INSERT INTO adresa(id_adresy, krajina, obec, psc, ulica, cislo_popisne) VALUES(?, ?, ?, ?, ?, ?)");
+                $par->bind_param("isssss", $id_adresy, $krajina, $obec, $psc, $ulica, $cislo_popisne);
+                $par->execute();
+                checkDBError($this->db);
+            }
             #kontaktne udaje
-            $id_kontaktne_udaje=$this->db->query("SELECT MAX(id_kontektne_udaje) FROM kontaktne_udaje")->fetch_assoc()['MAX(id_kontektne_udaje)']+1;
-            $telefon=$_POST['telefon'];
-            $email=$_POST['email'];
-            $par=$this->db->prepare("INSERT INTO kontaktne_udaje(id_kontektne_udaje, telefon, email) VALUES(?, ?, ?)");
-            $par->bind_param("iss", $id_kontaktne_udaje, $telefon, $email);
-            $par->execute();
-            checkDBError($this->db);
+            if(!($id_kontaktne_udaje=contactDataRecExistence($_POST['email'], $_POST['telefon']))){
+                $id_kontaktne_udaje=$this->db->query("SELECT MAX(id_kontektne_udaje) FROM kontaktne_udaje")->fetch_assoc()['MAX(id_kontektne_udaje)']+1;
+                $telefon=$_POST['telefon'];
+                $email=$_POST['email'];
+                $par=$this->db->prepare("INSERT INTO kontaktne_udaje(id_kontektne_udaje, telefon, email) VALUES(?, ?, ?)");
+                $par->bind_param("iss", $id_kontaktne_udaje, $telefon, $email);
+                $par->execute();
+                checkDBError($this->db);
+            }
             #osoba
             $cislo_op=$_POST['Cislo_op'];
             $meno=$_POST['Meno'];
@@ -58,15 +62,14 @@ class serverResponse
         return $this->addRow("Registrácia neprebehla.");
     }
 
-    private function addRow($string) : bool{
+    public function addRow($string) : bool{
         if($string!=""){
             if($this->response==""){
                 $this->response=$string;
-                return false;
             }else{
                 $this->response.="<br>".$string;
-                return false;
             }
+            return false;
         }
         return true;
     }
@@ -123,4 +126,3 @@ class serverResponse
         return $this->response;
     }
 }
-?>

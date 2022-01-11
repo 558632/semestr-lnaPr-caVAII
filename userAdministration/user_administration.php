@@ -36,7 +36,7 @@ session_start();
             <?php
             require "user_administration_server.php";
             if(isset($_POST['Odoslat2'])||isset($_POST['Odoslat3'])||isset($_POST['Odoslat4'])){
-                $response=new serverResponse();
+                $response=new serverResponseRegistration();
                 echo $response;
             }
             ?>

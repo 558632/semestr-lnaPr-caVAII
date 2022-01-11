@@ -1,6 +1,7 @@
 <?php
 require "./../globalFunctions.php";
-class serverResponse{
+require "./../serverResponseInterface.php";
+class serverResponse implements serverResponseInterface {
 
     private mysqli $db;
     private string $response="";
@@ -110,7 +111,7 @@ class serverResponse{
         return false;
     }
 
-    private function addRow($string) : bool{
+    public function addRow($string) : bool{
         if($string!=""){
             if($this->response==""){
                 $this->response=$string;

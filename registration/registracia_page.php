@@ -34,9 +34,9 @@ session_start();
     <div class="row" id="serverResponseRow">
         <div class="col-12" style="text-align: center">
             <?php
-            require "registracia_server.php";
+            require "server_response.php";
             if(isset($_POST['Odoslat1'])){
-                $instancia=new serverResponse();
+                $instancia=new serverResponseRegistration();
                 echo $instancia;
             }
             ?>
@@ -62,7 +62,7 @@ session_start();
                                 <div class="collapse" id="osInf">
                                     <div class="card card-body">
                                         <div class="row">
-                                            <div class="col-5" value>
+                                            <div class="col-5">
                                                 <label for="Meno">Meno:</label>
                                             </div>
                                             <div class="col-7">
@@ -189,7 +189,7 @@ session_start();
                                                 <label for="heslo">Heslo používateľa:</label>
                                             </div>
                                             <div class="col-7">
-                                                <input type="password" name="heslo" id="heslo"><br>
+                                                <input type="password" name="heslo" id="heslo">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -197,7 +197,7 @@ session_start();
                                                 <label for="heslo1">Heslo používateľa znova:</label>
                                             </div>
                                             <div class="col-7">
-                                                <input type="password" name="heslo1" id="heslo1"><br>
+                                                <input type="password" name="heslo1" id="heslo1">
                                             </div>
                                         </div>
                                     </div>

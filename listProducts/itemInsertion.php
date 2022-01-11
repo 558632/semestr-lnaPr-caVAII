@@ -1,5 +1,6 @@
 <?php
     //session_start();
+    require "./../globalFunctions.php";
     if($_POST['category_p_i']=="" || $_POST['name_p_i']=="" || $_POST['desc_p_i']==""){
         echo "Všetky polia musia byť zadané.\n";
     }else{
@@ -33,7 +34,7 @@
             }
         }
 
-        public function dataCorection(){
+        public function dataCorection() : bool{
             if(!(strlen($this->category)>2) || !(strlen($this->name)>4) || !(strlen($this->desc)>19)){
                 echo "Všetky vstupy nemajú stanovenú dĺžku.\n";
                 return false;
@@ -53,10 +54,7 @@
         }
 
         public function insertItem(){
-            $row=$this->db->query("SELECT id_of_category FROM category WHERE name_of_category LIKE '$this->category'")->fetch_assoc();
-            if($row){
-                $id_category=$row['id_of_category'];
-            }else{
+            if(!($id_category=categoryExistence($this->category))){
                 $id_category=$this->db->query("SELECT MAX(id_of_category) FROM category")->fetch_assoc()['MAX(id_of_category)']+1;
                 $prep=$this->db->prepare("INSERT INTO category(id_of_category, name_of_category) VALUES (?, ?)");
                 $prep->bind_param("is", $id_category, $this->category);
