@@ -13,7 +13,7 @@ table:hover{
     opacity: 100%;
 }
 /*3*/
-table > tr > th{
+table > thead > tr > th{
     border-bottom-width: 2px;
     border-right-width: 2px;
     border-left-width: 2px;
@@ -27,7 +27,7 @@ table > tbody > tr > td{
     border-bottom-width: 1px;
 }
 /*5*/
-table > tr:hover > th:nth-child(2n-1){
+table > thead > tr:hover > th:nth-child(2n-1){
     opacity: 50%;
 }
 /*6*/
@@ -54,7 +54,7 @@ table > tbody > tr > td:nth-child(3):hover, table > tbody > tr > td:nth-child(4)
     color: white;
 }
 /*11*/
-table > tr > th::selection, table > tbody > tr > td::selection{
+table > thead > tr > th::selection, table > tbody > tr > td::selection{
     background-color: yellow;
     color: black;
 }

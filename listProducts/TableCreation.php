@@ -11,9 +11,9 @@ $table= new Table();
             $this->Insertion();
         }
         private function ucinTabulku(){
-            $this->html=$this->html . "<table id='table_from_server'><tr><th>ID</th><th>Kategoria</th><th>Nazov</th><th>Popis</th></tr>";
+            $this->html=$this->html . "<table id='table_from_server'><thead><tr><th>ID</th><th>Kategoria</th><th>Nazov</th><th>Popis</th></tr></thead><tbody>";
             $this->ucinData();
-            $this->html=$this->html . "</table>";
+            $this->html=$this->html . "</tbody></table>";
         }
         private function ucinData(){
             $this->checkDBError();

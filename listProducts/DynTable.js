@@ -9,26 +9,20 @@ class DynTable{
         this.HTMLElement.innerHTML="";
         let hlavicka=this.ucinHlavicku();
         let telo=this.ucinTelo();
-        let table=`<table>${telo}</table>`;
-        this.HTMLElement.innerHTML=table;
-        this.HTMLElement.querySelector("table").prepend(hlavicka);
+        this.HTMLElement.innerHTML=`<table>${hlavicka}${telo}</table>`;
     }
     ucinHlavicku(){
         let prvok=this.data[2];
-        let riadok=document.createElement('tr');
+        let textHlavicky=`<thead>`;
+        let riadok=`<tr>`;
         Object.keys(prvok).forEach((nazov)=>{
-            let th=document.createElement('th');
-            th.innerHTML=nazov;
-            th.style.cursor="pointer";
-            th.onclick=()=>{
-                this.utried(nazov);
-            }
-            riadok.appendChild(th);
+            riadok+=`<th style="cursor: pointer" onclick="this.utried(${nazov})">${nazov}</th>`;
         })
-        return riadok;
+        textHlavicky+=`${riadok}</tr></thead>`;
+        return textHlavicky;
     }
     ucinTelo(){
-        let textTela="";
+        let textTela=`<tbody>`;
         let keys=Object.keys(this.data[3]);
         this.data.forEach((object)=>{
             let textRiadku="";
@@ -37,7 +31,7 @@ class DynTable{
             });
             textTela+=`<tr>${textRiadku}</tr>`;
         });
-        return textTela;
+        return textTela+=`</tbody>`;
     }
     utried(podla){
         if(this.naposledyUtriedene==null && this.naposledyUtriedene != podla){
