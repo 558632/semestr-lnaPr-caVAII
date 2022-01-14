@@ -16,13 +16,13 @@ function createData(paData){
             if(att!="municipality"){
                 if(object["municipality"]=="Bratislava"){
                     if(item==""){
-                        item+=`<div id="municipality_bratislava">`;
+                        item+=`<div class="municipality_bratislava">`;
                     }
                     item+=`<strong>${att}</strong>`;
                     item+=`${object[att]}<br>`;
                 }else{
                     if(item==""){
-                        item+=`<div id="municipalities_others">`;
+                        item+=`<div class="municipalities_others">`;
                     }
                     item+=`<strong>${att}</strong>`;
                     item+=`${object[att]}<br>`;

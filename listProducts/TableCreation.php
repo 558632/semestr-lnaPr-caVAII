@@ -50,7 +50,7 @@ $table= new Table();
                             }
                         $this->html.="</datalist>
                         <input type='text' name='name_p_i' id='name_p_i' placeholder='Názov produktu' tabindex='2'>
-                        <textarea type='textarea' name='desc_p_i' id='desc_p_i' tabindex='3'>Sem zadajte popis.</textarea>
+                        <textarea name='desc_p_i' id='desc_p_i' tabindex='3'>Sem zadajte popis.</textarea>
                         <button type='button' name='confirmation_p_i' onclick='tryInsert()'>Odoslať</button>
                     </fieldset></div>";
                 return true;

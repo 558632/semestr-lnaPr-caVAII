@@ -36,12 +36,12 @@ button.all_municipalities:hover{
 }
 /*4*/
 /*dieťa*/
-div [id=municipality_bratislava] > strong{
+div.municipality_bratislava > strong{
     color: darkmagenta;
     letter-spacing: 5px;
 }
 /*5*/
-div [id=municipalities_others] > strong:hover{
+div.municipalities_others > strong:hover{
     font-weight: normal;
     word-spacing: 10px;
 }
