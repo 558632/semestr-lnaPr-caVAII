@@ -13,11 +13,6 @@ session_start();
     <link rel="stylesheet" type="text/css" href="localRules.css">
     <script src="DynTable.js"></script>
     <script src="tableData.js"></script>
-    <script id="dyn_table">
-        window.onload=function (){
-            new DynTable(tableData, document.getElementById("rowNaTabulku"));
-        }
-    </script>
     <script id="server_table">
         function generujTabulku(){
             document.getElementById("nacitanieTabulky").remove();

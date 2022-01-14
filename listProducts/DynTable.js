@@ -1,3 +1,6 @@
+window.onload=function (){
+    new DynTable(tableData, document.getElementById("rowNaTabulku"));
+}
 class DynTable{
     constructor(paData, paHTMLElement) {
         this.data=paData;
@@ -9,20 +12,28 @@ class DynTable{
         this.HTMLElement.innerHTML="";
         let hlavicka=this.ucinHlavicku();
         let telo=this.ucinTelo();
-        this.HTMLElement.innerHTML=`<table>${hlavicka}${telo}</table>`;
+        let table=`<table>${telo}</table>`;
+        this.HTMLElement.innerHTML=table;
+        this.HTMLElement.querySelector("table").prepend(hlavicka);
     }
     ucinHlavicku(){
-        let prvok=this.data[2];
-        let textHlavicky=`<thead>`;
-        let riadok=`<tr>`;
+        let prvok=this.data[0];
+        let thead=document.createElement('thead');
+        let riadok=document.createElement('tr');
         Object.keys(prvok).forEach((nazov)=>{
-            riadok+=`<th style="cursor: pointer" onclick="this.utried(${nazov})">${nazov}</th>`;
+            let th=document.createElement('th');
+            th.innerHTML=nazov;
+            th.style.cursor="pointer";
+            th.onclick=()=>{
+                this.utried(nazov);
+            }
+            riadok.appendChild(th);
         })
-        textHlavicky+=`${riadok}</tr></thead>`;
-        return textHlavicky;
+        thead.appendChild(riadok);
+        return thead;
     }
     ucinTelo(){
-        let textTela=`<tbody>`;
+        let textTela="";
         let keys=Object.keys(this.data[3]);
         this.data.forEach((object)=>{
             let textRiadku="";
@@ -31,7 +42,7 @@ class DynTable{
             });
             textTela+=`<tr>${textRiadku}</tr>`;
         });
-        return textTela+=`</tbody>`;
+        return textTela;
     }
     utried(podla){
         if(this.naposledyUtriedene==null && this.naposledyUtriedene != podla){
