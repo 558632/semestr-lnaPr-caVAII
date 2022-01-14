@@ -10,11 +10,10 @@ class DynTable{
     }
     ucinTabulku(){
         this.HTMLElement.innerHTML="";
-        let hlavicka=this.ucinHlavicku();
-        let telo=this.ucinTelo();
-        let table=`<table>${telo}</table>`;
-        this.HTMLElement.innerHTML=table;
-        this.HTMLElement.querySelector("table").prepend(hlavicka);
+        let table=document.createElement('table');
+        table.appendChild(this.ucinHlavicku());
+        table.appendChild(this.ucinTelo());
+        this.HTMLElement.appendChild(table);
     }
     ucinHlavicku(){
         let prvok=this.data[0];
@@ -22,7 +21,7 @@ class DynTable{
         let riadok=document.createElement('tr');
         Object.keys(prvok).forEach((nazov)=>{
             let th=document.createElement('th');
-            th.innerHTML=nazov;
+            th.innerText=nazov;
             th.style.cursor="pointer";
             th.onclick=()=>{
                 this.utried(nazov);
@@ -33,19 +32,21 @@ class DynTable{
         return thead;
     }
     ucinTelo(){
-        let textTela="";
+        let tbody=document.createElement('tbody');
         let keys=Object.keys(this.data[3]);
         this.data.forEach((object)=>{
-            let textRiadku="";
+            let riadok=document.createElement('tr');
             keys.forEach((atribut)=>{
-                textRiadku+=`<td>${object[atribut]}</td>`;
+                let td=document.createElement('td');
+                td.innerText+=object[atribut];
+                riadok.appendChild(td);
             });
-            textTela+=`<tr>${textRiadku}</tr>`;
+            tbody.appendChild(riadok);
         });
-        return textTela;
+        return tbody;
     }
     utried(podla){
-        if(this.naposledyUtriedene==null && this.naposledyUtriedene != podla){
+        if(this.naposledyUtriedene != podla){
             this.data.sort(function (a,b){
                 return String(a[podla]).localeCompare(String(b[podla]));
             });
