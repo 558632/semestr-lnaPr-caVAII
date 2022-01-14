@@ -23,12 +23,9 @@ function createData(paData){
                 }else{
                     if(item==""){
                         item+=`<div id="municipalities_others">`;
-                        item+=`<strong>${att}</strong>`;
-                        item+=`${object[att]}<br>`;
-                    }else{
-                        item+=`<strong>${att}</strong>`;
-                        item+=`${object[att]}<br>`;
                     }
+                    item+=`<strong>${att}</strong>`;
+                    item+=`${object[att]}<br>`;
                 }
 
             }else{
