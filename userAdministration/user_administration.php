@@ -13,7 +13,7 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./../globalRules.css">
+    <link rel="stylesheet" media="screen" type="text/css" href="./../globalRules.css">
 </head>
 <body>
 <div class="container">
@@ -27,12 +27,12 @@ session_start();
         </div>
     </div>
     <div class="row" id="imgRow">
-        <div class="col-12">
+        <div class="col-md-12">
             <img src="../obrazok_reprezentacny_1.jpg" alt="uvod" class="img-fluid">
         </div>
     </div>
     <div class="row" id="serverResponseRow">
-        <div class="col-12" style="text-align: center">
+        <div class="col-md-12" style="text-align: center">
             <?php
             require "user_administration_server.php";
             if(isset($_POST['Odoslat2'])||isset($_POST['Odoslat3'])||isset($_POST['Odoslat4'])){
@@ -43,7 +43,7 @@ session_start();
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-md-12">
             <div class="accordion accordion-flush" id="accordionFlush">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
@@ -55,41 +55,41 @@ session_start();
                         <div class="accordion-body">
                             <form method="post">
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-md-5">
                                         <label for="login1">Prihlasovacie meno:</label>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-7">
                                         <input type="text" name="login1" id="login1">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-md-5">
                                         <label for="heslo2">Staré heslo používateľa:</label>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-7">
                                         <input type="password" name="heslo2" id="heslo2"><br>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-md-5">
                                         <label for="heslo3">Nové heslo používateľa:</label>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-7">
                                         <input type="password" name="heslo3" id="heslo3"><br>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-md-5">
                                         <label for="heslo4">Nové heslo znova:</label>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-7">
                                         <input type="password" name="heslo4" id="heslo4"><br>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-md-5">
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-7">
                                         <input type="submit" name="Odoslat2" value="Odoslať">
                                     </div>
                                 </div>
@@ -107,33 +107,33 @@ session_start();
                         <div class="accordion-body">
                             <form method="post">
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-md-5">
                                         <label for="Cislo_op2">Číčslo občianskeho preukazu:</label>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-7">
                                         <input type="text" name="Cislo_op2" id="Cislo_op2">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-md-5">
                                         <label for="login2">Prihlasovacie meno:</label>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-7">
                                         <input type="text" name="login2" id="login2">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-md-5">
                                         <label for="heslo5">Heslo používateľa:</label>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-7">
                                         <input type="password" name="heslo5" id="heslo5"><br>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-md-5">
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-7">
                                         <input type="submit" name="Odoslat3" value="Odoslať" style="object-position: center">
                                     </div>
                                 </div>
@@ -151,10 +151,10 @@ session_start();
                         <div class="accordion-body">
                             <form method="post">
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-md-5">
                                         <label for="password_for_modification1">Používateľské heslo:</label>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-7">
                                         <input type="password" name="password_for_modification1" id="password_for_modification1">
                                         <div class="current_data">
                                             <?php echo "Váše používateľské meno: " . $_SESSION['isLoggedIn']?>
@@ -162,10 +162,10 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-md-5">
                                         <label for="name_modification1">Nové meno:</label>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-7">
                                         <input type="text" name="name_modification1" id="name_modification1">
                                         <div class="current_data">
                                             <?php echo "Váše meno: " . getName($_SESSION['isLoggedIn'])?>
@@ -173,10 +173,10 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-md-5">
                                         <label for="suername_modification1">Nové Priezvisko:</label>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-7">
                                         <input type="text" name="suername_modification1" id="suername_modification1">
                                         <div class="current_data">
                                             <?php echo "Váše priezvisko: " . getSurname($_SESSION['isLoggedIn'])?>
@@ -184,9 +184,9 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-md-5">
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-7">
                                         <input type="submit" name="Odoslat4" value="Odoslať">
                                     </div>
                                 </div>

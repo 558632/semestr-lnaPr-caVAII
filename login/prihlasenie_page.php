@@ -19,7 +19,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../globalFunctions.js"></script>
-    <link rel="stylesheet" type="text/css" href="./../globalRules.css">
+    <link rel="stylesheet" media="screen" type="text/css" href="./../globalRules.css">
     <script>
         let buffer=5;
         function sendToServer() {
@@ -69,17 +69,17 @@
         </div>
     </div>
     <div class="row" id="imgRow" >
-        <div class="col-12">
+        <div class="col-md-12">
             <img src="../obrazok_reprezentacny_1.jpg" alt="uvod" class="img-fluid">
         </div>
     </div>
     <div class="row" id="serverResponseRow">
-        <div class="col-12" style="text-align: center" id="serverResponseCol">
+        <div class="col-md-12" style="text-align: center" id="serverResponseCol">
             <pre id="theContent"></pre>
         </div>
     </div>
     <div class="row" style="padding: 3px">
-        <div class=”col-12" style="text-align: center">
+        <div class=”col-md-12" style="text-align: center">
             <h3>Prihlásenie používateľa</h3>
             <div id="prihlasenie_pouzivatela">
                 <div>

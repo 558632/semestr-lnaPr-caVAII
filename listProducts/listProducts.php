@@ -9,13 +9,13 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./../globalRules.css">
+    <link rel="stylesheet" media="screen" type="text/css" href="./../globalRules.css">
     <link rel="stylesheet" type="text/css" href="localRules.css">
     <script src="DynTable.js"></script>
     <script src="tableData.js"></script>
     <script id="dyn_table">
         window.onload=function (){
-            let table = new DynTable(tableData, document.getElementById("rowNaTabulku"));
+            new DynTable(tableData, document.getElementById("rowNaTabulku"));
         }
     </script>
     <script id="server_table">
@@ -85,7 +85,7 @@ session_start();
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-md-12">
             <img src="../obrazok_reprezentacny_1.jpg" alt="uvod" class="img-fluid">
         </div>
     </div>
@@ -95,7 +95,7 @@ session_start();
     <!--Tabuľka produktov z databázy generovaná pomocou ajax    -->
     <div style="text-align: center" id="nadpis_tabulka_zo_servera"><h4>Tabuľka produktov z databázy</h4></div>
     <div class="row" id="tabulka_zo_servera_row">
-        <div class="col-12" style="text-align: center" id="tabulka_zo_servera">
+        <div class="col-md-12" style="text-align: center" id="tabulka_zo_servera">
             <button type="button" id="nacitanieTabulky" onclick="generujTabulku()">Načítať</button>
         </div>
     </div>

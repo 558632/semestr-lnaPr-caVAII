@@ -48,11 +48,12 @@ img.clickable.notZoomed1{
     animation-iteration-count: infinite;
 }
 @keyframes anim2 {
-    from {margin-top: 0px}
+    from {margin-top: 0}
     to {margin-top: 200px}
 }
 /*7*/
 img.clickable.notZoomed2{
+    border-radius: 4px;
     margin-bottom: 50px;
     position: relative;
     animation-name: anim3;
@@ -62,7 +63,7 @@ img.clickable.notZoomed2{
     animation-iteration-count: infinite;
 }
 @keyframes anim3 {
-    from {top: 0px}
+    from {top: 0}
     to {top: 50px}
 }
 /*8*/

@@ -13,7 +13,7 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="client-side-form-check.js"></script>
-    <link rel="stylesheet" type="text/css" href="./../globalRules.css">
+    <link rel="stylesheet" media="screen" type="text/css" href="./../globalRules.css">
 </head>
 <body>
 <div class="container">
@@ -27,12 +27,12 @@ session_start();
         </div>
     </div>
     <div class="row" id="imgRow">
-        <div class="col-12">
+        <div class="col-md-12">
           <img src="../obrazok_reprezentacny_1.jpg" alt="uvod" class="img-fluid">
         </div>
     </div>
     <div class="row" id="serverResponseRow">
-        <div class="col-12" style="text-align: center">
+        <div class="col-md-12" style="text-align: center">
             <?php
             require "server_response.php";
             if(isset($_POST['Odoslat1'])){
@@ -43,7 +43,7 @@ session_start();
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-md-12">
             <div class="accordion accordion-flush" id="accordion1">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
@@ -62,34 +62,34 @@ session_start();
                                 <div class="collapse" id="osInf">
                                     <div class="card card-body">
                                         <div class="row">
-                                            <div class="col-5">
+                                            <div class="col-md-5">
                                                 <label for="Meno">Meno:</label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-md-7">
                                                 <input type="text" name="Meno" id="Meno">
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-5">
+                                            <div class="col-md-5">
                                                 <label for="Priezvisko">Priezvisko:</label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-md-7">
                                                 <input type="text" name="Priezvisko" id="Priezvisko">
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-5">
+                                            <div class="col-md-5">
                                                 <label for="Cislo_op">Číslo občianskeho preukazu:</label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-md-7">
                                                 <input type="text" name="Cislo_op" id="Cislo_op">
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-5">
+                                            <div class="col-md-5">
                                                 <label for="Datum_narodenia">Dátum narodenia:</label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-md-7">
                                                 <input type="text" name="Datum_narodenia" id="Datum_narodenia" placeholder="yyyy-m-d">
                                             </div>
                                         </div>
@@ -103,18 +103,18 @@ session_start();
                                 <div class="collapse" id="kU">
                                     <div class="card card-body">
                                         <div class="row">
-                                            <div class="col-5">
+                                            <div class="col-md-5">
                                                 <label for="telefon">Telefónne číslo:</label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-md-7">
                                                 <input type="text" name="telefon" id="telefon">
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-5">
+                                            <div class="col-md-5">
                                                 <label for="email">E-mail:</label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-md-7">
                                                 <input type="text" name="email" id="email">
                                             </div>
                                         </div>
@@ -128,42 +128,42 @@ session_start();
                                 <div class="collapse" id="aB">
                                     <div class="card card-body">
                                         <div class="row">
-                                            <div class="col-5">
+                                            <div class="col-md-5">
                                                 <label for="krajina">Krajina:</label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-md-7">
                                                 <input type="text" name="krajina" id="krajina">
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-5">
+                                            <div class="col-md-5">
                                                 <label for="Obec">Obec:</label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-md-7">
                                                 <input type="text" name="Obec" id="Obec">
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-5">
+                                            <div class="col-md-5">
                                                 <label for="psc">PSČ:</label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-md-7">
                                                 <input type="text" name="psc" id="psc">
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-5">
+                                            <div class="col-md-5">
                                                 <label for="ulica">Ulica:</label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-md-7">
                                                 <input type="text" name="ulica" id="ulica">
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-5">
+                                            <div class="col-md-5">
                                                 <label for="popisne">Číslo popisné:</label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-md-7">
                                                 <input type="text" name="popisne" id="popisne">
                                             </div>
                                         </div>
@@ -177,26 +177,26 @@ session_start();
                                 <div class="collapse" id="pU">
                                     <div class="card card-body">
                                         <div class="row">
-                                            <div class="col-5">
+                                            <div class="col-md-5">
                                                 <label for="login">Prihlasovacie meno:</label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-md-7">
                                                 <input type="text" name="login" id="login">
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-5">
+                                            <div class="col-md-5">
                                                 <label for="heslo">Heslo používateľa:</label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-md-7">
                                                 <input type="password" name="heslo" id="heslo">
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-5">
+                                            <div class="col-md-5">
                                                 <label for="heslo1">Heslo používateľa znova:</label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-md-7">
                                                 <input type="password" name="heslo1" id="heslo1">
                                             </div>
                                         </div>

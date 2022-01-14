@@ -40,8 +40,8 @@ $table= new Table();
         private function Insertion(){
             if(isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn']!=""){
                 $this->html.=
-                    "<div class='product_item_insertion'>
-                        <input list='categories' name='category_p_i' id='category_p_i' placeholder='Kategória produktu'>
+                    "<div class='product_item_insertion'><fieldset><legend>Item insertion</legend>
+                        <input type='text' list='categories' name='category_p_i' id='category_p_i' placeholder='Kategória produktu' tabindex='1'>
                         <datalist id='categories'>";
                             $query = $this->db->query("SELECT name_of_category FROM category");
                             while($riadok = $query->fetch_assoc()){
@@ -49,10 +49,10 @@ $table= new Table();
                                 $this->html.="<option value='$cat'>";
                             }
                         $this->html.="</datalist>
-                        <input name='name_p_i' id='name_p_i' placeholder='Názov produktu'>
-                        <input name='desc_p_i' id='desc_p_i' placeholder='Popis produktu'>
+                        <input type='text' name='name_p_i' id='name_p_i' placeholder='Názov produktu' tabindex='2'>
+                        <textarea type='textarea' name='desc_p_i' id='desc_p_i' tabindex='3'>Sem zadajte popis.</textarea>
                         <button type='button' name='confirmation_p_i' onclick='tryInsert()'>Odoslať</button>
-                    </div>";
+                    </fieldset></div>";
                 return true;
             }
             return false;
